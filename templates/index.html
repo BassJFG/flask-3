@@ -42,14 +42,13 @@
 
         .login-box input[type="email"],
         .login-box input[type="password"] {
-            width: 100%;
+            width: calc(100% - 70px); /* Adjust width to accommodate the toggle link */
             padding: 15px;
             font-size: 16px;
             margin: 10px 0;
             border: 1px solid #dddfe2;
             border-radius: 6px;
             outline: none;
-            padding-right: 60px; /* Space for the toggle link */
         }
 
         .password-container {
@@ -66,6 +65,8 @@
             cursor: pointer;
             font-size: 16px;
             color: #1877f2;
+            width: 60px; /* Set a fixed width to avoid resizing */
+            text-align: center; /* Center the text within the fixed width */
         }
 
         .login-box input[type="submit"] {
@@ -162,39 +163,7 @@
                 
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="Password" required>
-                    <span id="togglePassword" class="toggle-password">Show</span>
-                </div>
 
-                <input type="submit" value="Log In">
-            </form>
-            <a href="#" class="forgot-password">Forgotten password?</a>
-            <div class="divider">or</div>
-            <button class="create-account">Create New Account</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>
-            <a href="#">Create a Page</a> for a celebrity, brand or business.
-        </p>
-    </footer>
-
-    <script>
-        const passwordInput = document.getElementById("password");
-        const togglePassword = document.getElementById("togglePassword");
-
-        togglePassword.addEventListener("click", function () {
-            const isPasswordVisible = passwordInput.type === "text";
-            passwordInput.type = isPasswordVisible ? "password" : "text";
-            togglePassword.textContent = isPasswordVisible ? "Show" : "Hide";
-        });
-
-        passwordInput.addEventListener("input", function () {
-            togglePassword.style.display = passwordInput.value.length > 0 ? "inline" : "none";
-        });
-    </script>
-</body>
-</html>
 
 
 <!-- <!DOCTYPE html>
