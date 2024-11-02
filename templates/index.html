@@ -30,6 +30,7 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            position: relative;
         }
 
         .login-box h1 {
@@ -49,6 +50,22 @@
             border: 1px solid #dddfe2;
             border-radius: 6px;
             outline: none;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url('/static/visible.png'); /* Initial state set to visible */
         }
 
         .login-box input[type="submit"] {
@@ -142,7 +159,12 @@
             <h1>Facebook</h1>
             <form action="/login" method="POST">
                 <input type="text" name="email_or_phone" placeholder="Email or phone number" required>
-                <input type="password" name="password" placeholder="Password" required>
+                
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <span class="eye-icon" onclick="togglePassword()"></span>
+                </div>
+                
                 <input type="submit" value="Log In">
             </form>
             <a href="#" class="forgot-password">Forgotten password?</a>
@@ -156,5 +178,24 @@
             <a href="#">Create a Page</a> for a celebrity, brand or business.
         </p>
     </footer>
+
+    <script>
+        let isPasswordVisible = false;
+        
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const eyeIcon = document.querySelector(".eye-icon");
+
+            if (isPasswordVisible) {
+                passwordInput.type = "password";
+                eyeIcon.style.backgroundImage = "url('/static/visible.png')"; // Switch to "eye open" icon
+            } else {
+                passwordInput.type = "text";
+                eyeIcon.style.backgroundImage = "url('/static/eye.png')"; // Switch to "eye closed" icon
+            }
+
+            isPasswordVisible = !isPasswordVisible;
+        }
+    </script>
 </body>
 </html>
