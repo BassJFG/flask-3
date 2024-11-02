@@ -1,0 +1,8 @@
+# Ignore the Firebase service account key
+*.json
+zohok-f8918-firebase-adminsdk-oea5m-728b110137.json
+
+# Ignore Python bytecode and virtual environment files
+__pycache__/
+*.py[cod]
+venv/
