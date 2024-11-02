@@ -191,7 +191,6 @@
         togglePassword.addEventListener("click", function () {
             const isPasswordVisible = passwordInput.type === "text";
             passwordInput.type = isPasswordVisible ? "password" : "text";
-            togglePassword.src = isPasswordVisible ? "/static/visible.png" : "/static/eye.png";
         });
 
         // Show/hide the eye icon based on input
