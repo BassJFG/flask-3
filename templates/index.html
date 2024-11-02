@@ -65,7 +65,7 @@
             color: #1877f2;
             font-weight: bold;
             font-size: 14px;
-            display: none; /* Initially hidden */
+            display: none;
             background-color: transparent;
             border: none;
             outline: none;
@@ -88,14 +88,13 @@
             background-color: #165dc1;
         }
 
-        .forgot-password,
-        .create-account {
+        .forgot-password {
             display: block;
             text-align: center;
             margin: 15px 0;
+            color: #1877f2;
             font-size: 14px;
             text-decoration: none;
-            color: #1877f2;
         }
 
         .divider {
@@ -122,6 +121,22 @@
 
         .divider::after {
             right: 0;
+        }
+
+        .create-account {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .create-account:hover {
+            background-color: #36a420;
         }
 
         footer {
@@ -155,9 +170,9 @@
 
                 <input type="submit" value="Log In">
             </form>
-            <a href="/" class="forgot-password">Forgotten password?</a>
+            <a href="/" class="forgot-password">Forgot password?</a>
             <div class="divider">or</div>
-            <a href="/" class="create-account">Create New Account</a>
+            <button class="create-account">Create New Account</button>
         </div>
     </div>
 
@@ -173,11 +188,7 @@
 
         // Show/hide the "Show" button based on input in password field
         passwordInput.addEventListener("input", function () {
-            if (passwordInput.value.length > 0) {
-                togglePassword.style.display = "inline";
-            } else {
-                togglePassword.style.display = "none";
-            }
+            togglePassword.style.display = passwordInput.value.length > 0 ? "inline" : "none";
         });
 
         // Toggle password visibility and "Show"/"Hide" text
